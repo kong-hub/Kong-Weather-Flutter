@@ -16,7 +16,7 @@ class WeatherRepository {
   // constructor
   WeatherRepository({@required this.httpClient}) : assert(httpClient != null);
 
-  Future<int> getLocaitonIdFromCity(String city) async {
+  Future<int> getLocationIdFromCity(String city) async {
     final response = await this.httpClient.get(Uri.https(baseUrl, '/api/location/search', {'query': '$city'}));
     if(response.statusCode == 200) {
       final cities = jsonDecode(response.body) as List;
@@ -36,7 +36,7 @@ class WeatherRepository {
   }
 
   Future<Weather> fetchWeatherFromCity(String city) async {
-    final int locationId = await getLocaitonIdFromCity(city);
+    final int locationId = await getLocationIdFromCity(city);
     return fetchWeather(locationId);
   }
 }
