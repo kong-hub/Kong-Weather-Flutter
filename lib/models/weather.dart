@@ -1,0 +1,1 @@
+class Weather extends Equal
